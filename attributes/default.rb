@@ -43,4 +43,15 @@ when 'ubuntu'
     default[:stackdriver][:repo_dist] = 'trusty'
     default[:stackdriver][:config_path] = '/etc/default/stackdriver-agent'
   end
+when 'debian'
+  case node[:platform_version]
+  when /^7\./ 
+    default[:stackdriver][:repo_url] = 'http://repo.stackdriver.com/apt'
+    default[:stackdriver][:repo_dist] = 'wheezy'
+    default[:stackdriver][:config_path] = '/etc/default/stackdriver-agent'
+  when /^6\./ 
+    default[:stackdriver][:repo_url] = 'http://repo.stackdriver.com/apt'
+    default[:stackdriver][:repo_dist] = 'squeeze'
+    default[:stackdriver][:config_path] = '/etc/default/stackdriver-agent'
+  end
 end
